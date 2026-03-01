@@ -3,6 +3,7 @@
 import * as React from "react"
 import { usePathname } from "next/navigation"
 import {
+  Mail,
   LayoutDashboard,
   Library,
   NotebookPen,
@@ -57,6 +58,11 @@ const data = {
       title: "設定",
       url: "/settings",
       icon: Settings,
+    },
+    {
+      title: "お問い合わせ",
+      url: "/contact",
+      icon: Mail,
     },
   ],
 }

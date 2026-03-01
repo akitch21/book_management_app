@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/pagination"
 import { Input } from "@/components/ui/input"
 import { ShowDropdown } from "@/components/shared/library/show-dropdown"
+import { BookDialog } from "@/components/shared/library/book-dialog"
 import { library_books } from "../../../data/data"
 
 type LibraryBook = (typeof library_books)[number]
@@ -49,11 +50,13 @@ export default function Page() {
         : library_books.filter((book) => {
           const title = book.book_info.book_title.toLowerCase()
           const author = book.book_info.book_author.toLowerCase()
-          const tag = book.book_tag.toLowerCase()
+          const genres = book.book_info.genre.map((genre) => genre.toLowerCase()).join(" ")
+          const tags = book.book_tag.map((tag) => tag.toLowerCase()).join(" ")
           return (
             title.includes(normalizedSearchText) ||
             author.includes(normalizedSearchText) ||
-            tag.includes(normalizedSearchText)
+            genres.includes(normalizedSearchText) ||
+            tags.includes(normalizedSearchText)
           )
         })
 
@@ -103,10 +106,24 @@ export default function Page() {
       className="bg-card text-card-foreground rounded-lg border p-4 shadow-xs"
     >
       <div className="space-y-2">
-        <h3 className="font-semibold leading-tight">{book.book_info.book_title}</h3>
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="font-semibold leading-tight">{book.book_info.book_title}</h3>
+          <BookDialog
+            triggerLabel="編集"
+            initialData={{
+              title: book.book_info.book_title,
+              author: book.book_info.book_author,
+              page: book.book_info.book_page,
+              genre: book.book_info.genre.join(", "),
+              tag: book.book_tag.join(", "),
+              image: book.book_info.image,
+            }}
+          />
+        </div>
         <p className="text-muted-foreground text-sm">著者: {book.book_info.book_author}</p>
         <p className="text-muted-foreground text-sm">ページ数: {book.book_info.book_page}</p>
-        <p className="text-muted-foreground text-sm">タグ: {book.book_tag}</p>
+        <p className="text-muted-foreground text-sm">ジャンル: {book.book_info.genre.join(", ")}</p>
+        <p className="text-muted-foreground text-sm">タグ: {book.book_tag.join(", ")}</p>
         <p className="text-muted-foreground text-xs">更新日: {formatDate(book.updated_at)}</p>
       </div>
     </article>
@@ -137,7 +154,7 @@ export default function Page() {
               value={sortMode}
               onChange={setSortMode}
             />
-            <Button>書籍追加</Button>
+            <BookDialog />
             <Button>書籍選択</Button>
           </div>
         </div>
@@ -162,11 +179,25 @@ export default function Page() {
             <div className="space-y-3">
               {pagedBooks.map((book) => (
                 <div key={book.id} className="bg-card text-card-foreground rounded-md border p-4">
-                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                  <div className="mb-2 flex items-center justify-between gap-2">
                     <p className="font-medium">{book.book_info.book_title}</p>
+                    <BookDialog
+                      triggerLabel="編集"
+                      initialData={{
+                        title: book.book_info.book_title,
+                        author: book.book_info.book_author,
+                        page: book.book_info.book_page,
+                        genre: book.book_info.genre.join(", "),
+                        tag: book.book_tag.join(", "),
+                        image: book.book_info.image,
+                      }}
+                    />
+                  </div>
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
                     <p className="text-muted-foreground text-sm">著者: {book.book_info.book_author}</p>
                     <p className="text-muted-foreground text-sm">ページ数: {book.book_info.book_page}</p>
-                    <p className="text-muted-foreground text-sm">タグ: {book.book_tag}</p>
+                    <p className="text-muted-foreground text-sm">ジャンル: {book.book_info.genre.join(", ")}</p>
+                    <p className="text-muted-foreground text-sm">タグ: {book.book_tag.join(", ")}</p>
                     <p className="text-muted-foreground text-xs">更新日: {formatDate(book.updated_at)}</p>
                   </div>
                 </div>

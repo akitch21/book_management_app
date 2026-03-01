@@ -7,9 +7,10 @@ export const library_books = [
             "book_title": "test book",
             "book_page": 300,
             "book_author": "akira",
+            "genre": ["programming"],
             "image": "https://example.com/image.jpg"
         },
-        "book_tag": "programing",
+        "book_tag": ["programming"],
         "updated_at": "2026-02-25T12:00:00Z"
     },
     {
@@ -19,10 +20,11 @@ export const library_books = [
             "book_title": "python guide",
             "book_page": 450,
             "book_author": "john",
+            "genre": ["programming"],
             "image": "https://example.com/image2.jpg"
         },
 
-        "book_tag": "programming",
+        "book_tag": ["programming"],
         "updated_at": "2026-02-26T12:00:00Z"
     },
     {
@@ -32,9 +34,10 @@ export const library_books = [
             "book_title": "web development",
             "book_page": 520,
             "book_author": "mary",
+            "genre": ["web"],
             "image": "https://example.com/image3.jpg"
         },
-        "book_tag": "web",
+        "book_tag": ["web"],
         "updated_at": "2026-02-27T12:00:00Z"
     },
     {
@@ -44,9 +47,10 @@ export const library_books = [
             "book_title": "data science",
             "book_page": 380,
             "book_author": "bob",
+            "genre": ["data"],
             "image": "https://example.com/image4.jpg"
         },
-        "book_tag": "data",
+        "book_tag": ["data"],
         "updated_at": "2026-02-28T12:00:00Z"
     },
     {
@@ -56,9 +60,10 @@ export const library_books = [
             "book_title": "machine learning",
             "book_page": 600,
             "book_author": "alice",
+            "genre": ["ai"],
             "image": "https://example.com/image5.jpg"
         },
-        "book_tag": "ai",
+        "book_tag": ["ai"],
         "updated_at": "2026-02-29T12:00:00Z"
     }
 ]
