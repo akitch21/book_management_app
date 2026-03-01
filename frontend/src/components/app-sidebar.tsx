@@ -3,6 +3,7 @@
 import * as React from "react"
 import { usePathname } from "next/navigation"
 import {
+  Bell,
   Mail,
   LayoutDashboard,
   Library,
@@ -33,6 +34,11 @@ const data = {
       title: "ダッシュボード",
       url: "/dashboard",
       icon: LayoutDashboard,
+    },
+    {
+      title: "お知らせ",
+      url: "/news",
+      icon: Bell,
     },
     {
       title: "書籍ライブラリ",
